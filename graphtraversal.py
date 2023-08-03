@@ -88,6 +88,7 @@ class Solution:
             #TODO: Write code below to return an int with the solution to the prompt.
             currNode = ''
             total = 0
+            path = graph
             for i in range(0,len(graph)):
                 if graph[i] == 'Start':
                     fir_min_value = 0
