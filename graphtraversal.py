@@ -89,7 +89,7 @@ class Solution:
             currNode = ''
             total = 0
             path = graph
-            for i in range(0,len(graph)):
+            for i in range(0,len(path)):
                 if graph[i] == 'Start':
                     fir_min_value = 0
                     for j in graph['Start']:
@@ -99,7 +99,7 @@ class Solution:
                     total += fir_min_value
                 else:
                     min_value = 0
-                    for x in graph[currNode]:
+                    for x in path[currNode]:
                         if graph[currNode][x] > min_value:
                             min_value = graph[currNode][x]
                             currNode = j
