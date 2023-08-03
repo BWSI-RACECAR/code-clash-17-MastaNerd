@@ -88,8 +88,8 @@ class Solution:
             #TODO: Write code below to return an int with the solution to the prompt.
             currNode = ''
             total = 0
-            path = graph
-            for i in range(0,len(path)):
+            print(len(graph))
+            for i in range(0,len(graph)):
                 if graph[i] == 'Start':
                     fir_min_value = 0
                     for j in graph['Start']:
@@ -99,11 +99,13 @@ class Solution:
                     total += fir_min_value
                 else:
                     min_value = 0
-                    for x in path[currNode]:
+                    for x in graph[currNode]:
                         if graph[currNode][x] > min_value:
                             min_value = graph[currNode][x]
                             currNode = j
                     total += min_value
+                    if currNode == 'Finish':
+                        break
             return total
 
 def main():
