@@ -88,7 +88,7 @@ class Solution:
             #TODO: Write code below to return an int with the solution to the prompt.
             currNode = ''
             total = 0
-            graph = graph.getnodes()
+            graph = graph.get_nodes()
             print(len(graph))
             for i in range(0,len(graph)):
                 if graph[i] == 'Start':
