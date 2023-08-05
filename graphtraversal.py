@@ -86,29 +86,33 @@ class Solution:
 
             
             #TODO: Write code below to return an int with the solution to the prompt.
-            currNode = ''
-            total = 0
-            graph = graph.get_nodes()
-            print(len(graph))
-            for i in range(0,len(graph)):
-                if graph[i] == 'Start':
-                    fir_min_value = 0
-                    for j in graph['Start']:
-                        if graph['Start'][j] > fir_min_value:
-                            fir_min_value = graph['Start'][j]
-                            currNode = j
-                    total += fir_min_value
-                else:
-                    min_value = 0
-                    for x in graph[currNode]:
-                        if graph[currNode][x] > min_value:
-                            min_value = graph[currNode][x]
-                            currNode = j
-                    total += min_value
-                    if currNode == 'Finish':
-                        break
-            return total
-
+             unvisited_nodes = list(graph.get_nodes())
+   
+            shortest_path = {}
+            previous_nodes = {}
+       
+            for node in unvisited_nodes:
+                shortest_path[node] = sys.maxsize
+            shortest_path[start_node] = 0
+            
+            while len(unvisited_nodes) > 0:
+                current_min_node = None
+                for node in unvisited_nodes:
+                    if current_min_node == None:
+                        current_min_node = node
+                    elif shortest_path[node] < shortest_path[current_min_node]:
+                        current_min_node = node
+                
+                neighbors = graph.get_outgoing_edges(current_min_node)
+                for neighbor in neighbors:
+                    temp = shortest_path[current_min_node] + graph.value(current_min_node, neighbor)
+                    if temp < shortest_path[neighbor]:
+                        shortest_path[neighbor] = temp
+                        previous_nodes[neighbor] = current_min_node
+        
+                unvisited_nodes.remove(current_min_node)
+            
+            return previous_nodes, shortest_path
 def main():
     tc1 = Solution()
     in_graph = {}
